@@ -58,6 +58,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 ROOT_URLCONF = 'Epam_hacknu.urls'
 
 TEMPLATES = [
@@ -77,7 +80,6 @@ TEMPLATES = [
     },
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
 
 WSGI_APPLICATION = 'Epam_hacknu.wsgi.application'
 
