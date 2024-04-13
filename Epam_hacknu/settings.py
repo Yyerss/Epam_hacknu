@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'custom_auth.apps.CustomAuthConfig',
     'rest_framework_simplejwt',
     'drf_spectacular',
+    'test_determined_lvl.apps.TestDeterminedLvlConfig'
 
 ]
 

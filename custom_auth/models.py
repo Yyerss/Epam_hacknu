@@ -39,6 +39,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(validators=[password_validator], max_length=100)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    language_level = models.CharField(max_length=2, default='A1', choices=[
+        ('A1', 'Beginner'), ('A2', 'Elementary'),
+        ('B1', 'Intermediate'), ('B2', 'Upper Intermediate'),
+        ('C1', 'Advanced'), ('C2', 'Proficiency')
+    ])
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='custom_user_profiles',
