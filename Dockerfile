@@ -7,7 +7,7 @@ WORKDIR /app
 # Установим переменные окружения
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=SmartCookBackend.settings
+ENV DJANGO_SETTINGS_MODULE=Epam_hacknu.settings
 
 # Устанавливаем зависимости
 COPY requirements.txt /app/

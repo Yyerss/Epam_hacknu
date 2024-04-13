@@ -10,8 +10,7 @@
             "/test_determined_lvl/*.py",
             "/words/*.py",
             "requirements.txt",
-            "/Dockerfile",
-            "/docker-compose.yml"
+            "/Dockerfile"
         ]
     },
     "deploy": {
