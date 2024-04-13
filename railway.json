@@ -9,8 +9,9 @@
             "/custom_auth/*.py",
             "/test_determined_lvl/*.py",
             "/words/*.py",
-            "requirements.txt",
-            "/Dockerfile"
+            "/requirements.txt",
+            "/Dockerfile",
+             "/docker-compose.yml"
         ]
     },
     "deploy": {
