@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'test_determined_lvl.apps.TestDeterminedLvlConfig',
     'words.apps.WordsConfig',
     'corsheaders',
-    'storages'
-
 ]
 
 MIDDLEWARE = [
@@ -98,9 +96,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'qHkXWlvitsFSPfDVNhxROdrzINqhHSdL',
+        'PASSWORD': 'lOVzEzHoALnzHFkRkEHKQdZNcbBXZsmY',
         'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': 52844,
+        'PORT': 59808,
     }
 }
 

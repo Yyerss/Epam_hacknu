@@ -10,4 +10,4 @@ python manage.py migrate --noinput
 
 # Start server
 echo "Starting server..."
-exec gunicorn SmartCookBackend.wsgi:application --bind 0.0.0.0:8000
+exec gunicorn Epam_hacknu.wsgi:application --bind 0.0.0.0:8000
