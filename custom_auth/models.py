@@ -65,3 +65,28 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    reset_code = models.CharField(max_length=7, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.reset_code:
+            self.reset_code = self.generate_reset_code()
+        super().save(*args, **kwargs)
+
+    @staticmethod
+    def generate_reset_code(length=7):
+        characters = string.ascii_letters + string.digits
+        while True:
+            code = ''.join(random.choices(characters, k=length))
+            if not PasswordResetToken.objects.filter(reset_code=code).exists():
+                return code
+
+    def is_valid(self):
+        return (timezone.now() - self.created_at).total_seconds() < 3600
+
+    def __str__(self):
+        return f"PasswordResetToken for {self.user}"

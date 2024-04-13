@@ -1,16 +1,60 @@
-version: "3.9"
+version: '3.10'
 
 services:
-  web:
-    build: .
-    environment:
-      - DB_NAME=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_HOST=db
-      - DB_PORT=5432
-    command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/app
+  redis:
+    image: redis
+    restart: always
     ports:
-      - "8000:8000"
+      - "6379:6379"
+    networks:
+      - marketplace
+
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    networks:
+      - marketplace
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/code
+      - static_volume:/code/static
+
+  worker:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./celery/Dockerfile
+    command: celery -A Epam_hacknu worker -l info
+    volumes:
+      - ./:/code
+    depends_on:
+      - webapp
+      - redis
+    networks:
+      - marketplace
+
+  beat:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./celery/Dockerfile
+    command: celery -A Epam_hacknu beat -l info
+    volumes:
+      - ./:/code
+    depends_on:
+      - webapp
+      - redis
+      - worker
+    networks:
+      - marketplace
+
+networks:
+  marketplace:
+
+volumes:
+  db_data:
+  static_volume:

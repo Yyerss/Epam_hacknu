@@ -50,3 +50,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return CustomUser.objects.create_user(**validated_data)
+
+
+class PasswordResetRequestSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    reset_token = serializers.CharField()
+    new_password = serializers.CharField()
