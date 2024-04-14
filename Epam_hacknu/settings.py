@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'test_determined_lvl.apps.TestDeterminedLvlConfig',
     'words.apps.WordsConfig',
     'corsheaders',
-    'grammar.apps.GrammarConfig'
+    'grammar.apps.GrammarConfig',
+    'reading.apps.ReadingConfig'
 ]
 
 MIDDLEWARE = [
