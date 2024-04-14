@@ -4,8 +4,8 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://yourprojectlink.git
-   cd yourprojectdirectory
+   git clone https://github.com/Yyerss/Epam_hacknu.git
+   cd Epam_hacknu
    
 docker-compose up --build
 
