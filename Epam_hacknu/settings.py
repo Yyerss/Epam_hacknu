@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'test_determined_lvl.apps.TestDeterminedLvlConfig',
     'words.apps.WordsConfig',
     'corsheaders',
+    'grammar.apps.GrammarConfig'
 ]
 
 MIDDLEWARE = [
