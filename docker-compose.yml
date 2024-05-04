@@ -1,13 +1,26 @@
 version: '3.10'
 
 services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=epamdb
+      - POSTGRES_USER=epamuser
+      - POSTGRES_PASSWORD=securepassword
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - epam
+
   redis:
     image: redis
     restart: always
     ports:
       - "6379:6379"
     networks:
-      - marketplace
+      - epam
 
   webapp:
     build:
@@ -15,8 +28,9 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - redis
+      - postgres
     networks:
-      - marketplace
+      - epam
     ports:
       - '8000:8000'
     volumes:
@@ -34,8 +48,9 @@ services:
     depends_on:
       - webapp
       - redis
+      - postgres
     networks:
-      - marketplace
+      - epam
 
   beat:
     restart: always
@@ -49,11 +64,12 @@ services:
       - webapp
       - redis
       - worker
+      - postgres
     networks:
-      - marketplace
+      - epam
 
 networks:
-  marketplace:
+  epam:
 
 volumes:
   db_data:
