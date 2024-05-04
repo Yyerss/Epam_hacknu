@@ -19,6 +19,9 @@ class Answer(models.Model):
     text = models.TextField()
     is_correct = models.BooleanField()
 
+    def __str__(self):
+        return self.text
+
 
 class TestSubmission(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      labels:
+        app: celery-worker
+    spec:
+      containers:
+      - name: celery-worker
+        image: celery-worker:latest
+        command: ["celery", "-A", "Epam_hacknu", "worker", "-l", "info"]
+        volumeMounts:
+        - name: code-volume
+          mountPath: /code
+      volumes:
+      - name: code-volume
+        persistentVolumeClaim:
+          claimName: code-pvc
