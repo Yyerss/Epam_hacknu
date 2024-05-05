@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: celery-worker
-        image: celery-worker:latest
+        image: yyerss/epam2_hacknu-worker:my-image
         command: ["celery", "-A", "Epam_hacknu", "worker", "-l", "info"]
         volumeMounts:
         - name: code-volume
